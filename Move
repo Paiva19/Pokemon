@@ -1,0 +1,27 @@
+package ex01;
+
+public class Move {
+	private int atkpriority;
+	private String name;
+	private int power;
+	private int accuracy;
+	//private String tipo;    // Credito extra
+	
+	public Move (int atkpr, String nome, int poder, int mira){
+		this.atkpriority = atkpr;
+		this.name = nome;
+		this.power = poder;
+		this.accuracy = mira;
+		
+	}
+	
+	public int CalculaDanoBase(int poder, int mira){
+		int damage; 
+		//Inserir formulas para calcular dano do golpe
+		return damage;
+	} 
+	
+	
+	
+
+}
