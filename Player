@@ -1,0 +1,21 @@
+package ex01;
+
+public class Player {
+	private String ID;
+	private int npokemon;
+	private int item; //Mais de um item?
+	private Pokemon party[] = new Pokemon[6]; // ?
+	
+	public Player(String ident, int npoke, int qtd, Pokemon part[]){
+		int i;
+		this.ID = ident;
+		this.item = qtd;
+		this.npokemon = npoke;
+		for(i = 0; i < npoke; i++) this.party[i] = part[i]; 
+	}
+
+	
+	
+}
+
+
