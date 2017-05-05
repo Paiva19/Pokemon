@@ -1,0 +1,29 @@
+package ex01;
+
+public class Pokemon {
+	private String name;
+	private int id;
+	private Move attack[] = new Move[4]; 
+	private int maxHealth;
+	private int currentHealth;
+	private int atkPower;
+	private int defPower;
+	//private  type Ponto Extra?
+
+	public Pokemon(String nome, int ident, Move golpe[], int vidaMax, int atkpower, int defpower){
+		int i = 0;
+		this.name = nome;
+		this.id = ident;
+		while(i < 4) this.attack[i] = golpe[i++];
+		this.maxHealth = vidaMax;
+		this.currentHealth = vidaMax;
+		this.atkPower = atkpower;
+		this.defPower = defpower;
+	}
+	
+	public void Heal (int n){
+		this.currentHealth = + n;
+		if(this.currentHealth > this.maxHealth) this.currentHealth = this.maxHealth;
+	}
+	
+}
