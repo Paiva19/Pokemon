@@ -7,7 +7,7 @@ public class Move {
 	private int accuracy;
 	//private String tipo;    // Credito extra
 	
-	public Move (int atkpr, String nome, int poder, int mira){
+	public Move (String nome, int poder, int mira, int atkpr){
 		this.atkpriority = atkpr;
 		this.name = nome;
 		this.power = poder;
