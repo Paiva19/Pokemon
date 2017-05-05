@@ -1,0 +1,20 @@
+package ex01;
+
+public class Heal extends Action{
+
+	public Heal(){
+		super(1);
+	}
+	
+	public void action() {
+		Pokemon.Heal(n);
+		
+	}
+
+	
+	public String description() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
