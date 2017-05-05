@@ -2,21 +2,21 @@ public class ListaPokemon
 {
 	private Pokemon Lista[] = new Pokemon[151];
 	
-	public ListaPokemon (String name, int id, Attack golpe, int vidaMax, int Atq, int Def)
+	public ListaPokemon (String name, int id, Move golpe[4], int vidaMax, int Atq, int Def)
 	{
-		Lista[0] = new Pokemon ("Venusaur", 3, , 80, 82, 83);
-		Lista[1] = new Pokemon ("Charizard", 6, , 78, 84, 78);
-		Lista[2] = new Pokemon ("Blastoise", 9, , 79, 83, 100);
-		Lista[3] = new Pokemon ("Pidgeot", 18, , 83, 80, 75);
-		Lista[4] = new Pokemon ("Raichu", 26, , 60, 100, 55);
-		Lista[5] = new Pokemon ("Nidoqueen", 31, , 90, 82, 87);
-		Lista[6] = new Pokemon ("Nidoking", 34, , 81, 92, 77);
-		Lista[7] = new Pokemon ("Hypno", 97, , 85, 73, 70);
-		Lista[8] = new Pokemon ("Machamp", 68, , 90, 130, 80);
-		Lista[9] = new Pokemon ("Golem", 76, , 80, 110, 130);
-		Lista[10] = new Pokemon ("Lapras", 131, , 130, 85, 80);
-		Lista[11] = new Pokemon ("Scyther", 123, , 70, 110, 80);
-		Lista[12] = new Pokemon ("Dragonite", 149, , 91, 134, 95);
+		Lista[0] = new Pokemon ("Venusaur", 3, ListaGolpes.ListaM[1], ListaGolpes.ListaM[2], null, null, 80, 82, 83);
+		Lista[1] = new Pokemon ("Charizard", 6, ListaGolpes.ListaM[4], ListaGolpes.ListaM[5], null, null, 78, 84, 78);
+		Lista[2] = new Pokemon ("Blastoise", 9, ListaGolpes.ListaM[7], ListaGolpes.ListaM[8], ListaGolpes.ListaM[9], null, 79, 83, 100);
+		Lista[3] = new Pokemon ("Pidgeot", 18, ListaGolpes.ListaM[10], ListaGolpes.ListaM[11], null, null, 83, 80, 75);
+		Lista[4] = new Pokemon ("Raichu", 26, ListaGolpes.ListaM[12], ListaGolpes.ListaM[13], ListaGolpes.ListaM[14], null, 60, 100, 55);
+		Lista[5] = new Pokemon ("Nidoqueen", 31, ListaGolpes.ListaM[18], ListaGolpes.ListaM[19], ListaGolpes.ListaM[20], null, 90, 82, 87);
+		Lista[6] = new Pokemon ("Nidoking", 34, ListaGolpes.ListaM[15], ListaGolpes.ListaM[16], ListaGolpes.ListaM[18], null, 81, 92, 77);
+		Lista[7] = new Pokemon ("Hypno", 97, ListaGolpes.ListaM[21], ListaGolpes.ListaM[22], null, null, 85, 73, 70);
+		Lista[8] = new Pokemon ("Machamp", 68, ListaGolpes.ListaM[23], ListaGolpes.ListaM[24], ListaGolpes.ListaM[25], null, 90, 130, 80);
+		Lista[9] = new Pokemon ("Golem", 76, ListaGolpes.ListaM[26], ListaGolpes.ListaM[27], null, null, 80, 110, 130);
+		Lista[10] = new Pokemon ("Lapras", 131, ListaGolpes.ListaM[29], ListaGolpes.ListaM[24], ListaGolpes.ListaM[19], null, 130, 85, 80);
+		Lista[11] = new Pokemon ("Scyther", 123, ListaGolpes.ListaM[5], ListaGolpes.ListaM[10], ListaGolpes.ListaM[11], null, 70, 110, 80);
+		Lista[12] = new Pokemon ("Dragonite", 149, ListaGolpes.ListaM[14], ListaGolpes.ListaM[30], ListaGolpes.ListaM[31], null, 91, 134, 95);
 
 	}
 			
