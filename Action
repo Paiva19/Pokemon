@@ -1,0 +1,13 @@
+package ex01;
+
+abstract public class Action { 
+	private int priority; 
+	public Action(int prioridade) { 
+		this.priority = prioridade; 
+	} 
+	
+	
+	abstract public void action(); 
+	abstract public String description(); 
+	
+}
