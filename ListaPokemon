@@ -1,0 +1,23 @@
+public class ListaPokemon 
+{
+	private Pokemon Lista[] = new Pokemon[151];
+	
+	public ListaPokemon (String name, int id, Attack golpe, int vidaMax, int Atq, int Def)
+	{
+		Lista[0] = new Pokemon ("Venusaur", 3, , 80, 82, 83);
+		Lista[1] = new Pokemon ("Charizard", 6, , 78, 84, 78);
+		Lista[2] = new Pokemon ("Blastoise", 9, , 79, 83, 100);
+		Lista[3] = new Pokemon ("Pidgeot", 18, , 83, 80, 75);
+		Lista[4] = new Pokemon ("Raichu", 26, , 60, 100, 55);
+		Lista[5] = new Pokemon ("Nidoqueen", 31, , 90, 82, 87);
+		Lista[6] = new Pokemon ("Nidoking", 34, , 81, 92, 77);
+		Lista[7] = new Pokemon ("Hypno", 97, , 85, 73, 70);
+		Lista[8] = new Pokemon ("Machamp", 68, , 90, 130, 80);
+		Lista[9] = new Pokemon ("Golem", 76, , 80, 110, 130);
+		Lista[10] = new Pokemon ("Lapras", 131, , 130, 85, 80);
+		Lista[11] = new Pokemon ("Scyther", 123, , 70, 110, 80);
+		Lista[12] = new Pokemon ("Dragonite", 149, , 91, 134, 95);
+
+	}
+			
+}
