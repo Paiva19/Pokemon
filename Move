@@ -1,6 +1,6 @@
-package ex01;
+package Pokemon;
 
-public class Move {
+public class Move{
 	private int atkpriority;
 	private String name;
 	private int power;
@@ -15,13 +15,16 @@ public class Move {
 		
 	}
 	
-	public int CalculaDanoBase(int poder, int mira){
-		int damage; 
-		//Inserir formulas para calcular dano do golpe
-		return damage;
-	} 
+	public int RetornaMovePower ()
+	{
+		return this.power;
+	}
 	
-	
-	
-
+	public String GetMoveName ()
+	{
+		return this.name;
+	}
+	public int GetAtkPriority (){
+		return atkpriority;
+	}
 }
