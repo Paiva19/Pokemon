@@ -1,11 +1,11 @@
-package ex01;
+package Pokemon;
 
 public class ListaGolpes 
 {
 	public static Move ListaM[] = new Move[100];
 	
 	public
-	ListaGolpes (String name, int power, int accuracy, int movePriority)
+	ListaGolpes ()
 	{
 		ListaM[1] = new Move ("Solar Beam", 120, 100, 1);
 		ListaM[2] = new Move ("Razor Leaf", 55, 95, 1);
