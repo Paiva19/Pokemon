@@ -1,21 +1,54 @@
-package ex01;
+package Pokemon;
+
+import java.util.Random;
 
 public class Player {
 	private String ID;
 	private int npokemon;
-	private int item; //Mais de um item?
 	private Pokemon party[] = new Pokemon[6]; // ?
+	private int pokeAtivo = 0;
 	
-	public Player(String ident, int npoke, int qtd, Pokemon part[]){
-		int i;
+	public Player(String ident, int npoke){
 		this.ID = ident;
-		this.item = qtd;
-		this.npokemon = npoke;
-		for(i = 0; i < npoke; i++) this.party[i] = part[i]; 
+		this.npokemon = npoke; 
+		
+		int i;
+		ListaPokemon Lista = new ListaPokemon(); 
+		for (i = 0; i < npokemon; i++)
+		{
+			Random pokedex = new Random();
+			int indice = pokedex.nextInt(13);
+		
+			party[i] = ListaPokemon.Lista[indice].CriaNovoPoke();
+		}
+	}
+	
+	
+	
+	public int RetornaTamanhoParty (){
+		return this.npokemon;
+	}
+	public Pokemon RetornarPokemonAtivo ()
+	{
+		return this.party[pokeAtivo];
+	}
+	
+	public String GetPlayerName ()
+	{
+		return this.ID;
 	}
 
+	public int getPokeAtivo() {
+		return pokeAtivo;
+	}
+
+	public void setPokeAtivo(int pokeAtivo) {
+		this.pokeAtivo = pokeAtivo;
+	}
+	
+	public Pokemon RetornarPokemonGuardado (int n) {
+		return this.party[n];
+	}
 	
 	
 }
-
-
