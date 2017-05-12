@@ -77,6 +77,11 @@ public class Pokemon {
 			indAtqAtual = 0;
 	}
 	
+	
+	public int getId() {
+		return id;
+	}
+
 	public void TrocaPokeFainted(Player recebe) {
 		boolean possivelTrocar = true;	
 		int i = recebe.getPokeAtivo() + 1; //Vai para pokemon seguinte na party
@@ -85,11 +90,13 @@ public class Pokemon {
 			while (recebe.RetornarPokemonGuardado(i).RetornaVida() <= 0) //verifica se pokemon escolhido tem vida para entrar em batalha
 			{
 				i++;
-				if (i == 6)
+				if (i == recebe.RetornaTamanhoParty())
 					i = 0;
 				if (i == recebe.getPokeAtivo()) //todos os pokemons foram avaliados e nao foi possivel trocar
+				{
 					possivelTrocar = false;
 					break;
+				}
 			}
 			if (possivelTrocar)
 			{

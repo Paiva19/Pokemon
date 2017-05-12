@@ -23,7 +23,7 @@ private class Atacar extends Action {
 	{
 		float dano = 0;
 		/*if(acerto.nextInt(100) + 1 <= accuracy)*/
-			dano = (42 * power * atkpower + 100)/(defpower*50);
+			dano = (22 * power * atkpower + 100)/(defpower*50);
 		return (int) dano;
 	}
 	public void action(Player faz, Player recebe) { 
@@ -68,12 +68,12 @@ private class TrocarPokemon extends Action {
 	}
 	public void action(Player faz, Player recebe) {
 		int i = faz.getPokeAtivo() + 1; //Vai para pokemon seguinte na party
-			if (i == 6) 
+			if (i == faz.RetornaTamanhoParty()) 
 				i = 0;
 		while (faz.RetornarPokemonGuardado(i).RetornaVida() <= 0) //verifica se pokemon escolhido tem vida para entrar em batalha
 		{
 			i++;
-			if (i == 6)
+			if (i == faz.RetornaTamanhoParty())
 				i = 0;
 			if (i == faz.getPokeAtivo()) //todos os pokemons foram avaliados e nao foi possivel trocar
 				possivelTrocar = false;
@@ -85,7 +85,7 @@ private class TrocarPokemon extends Action {
 			System.out.println(faz.GetPlayerName() +" took " +faz.RetornarPokemonGuardado(pokeAntigo).GetPokeName() + " out of battle and sent out " +faz.RetornarPokemonAtivo().GetPokeName() +".");
 		}
 		else
-			System.out.println(faz.GetPlayerName() + " doesn't have any other healthy Pokémon! " +faz.RetornarPokemonAtivo().GetPokeName() +" can't be switched out!");
+			System.out.println(faz.GetPlayerName() + " doesn't have any other healthy PokÃ©mon! " +faz.RetornarPokemonAtivo().GetPokeName() +" can't be switched out!");
 	} 
 	public String description() { 
 		return "";
@@ -117,9 +117,9 @@ private class Restart1 extends Action {
 		double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
 		if (numAcao < 3 ) 
 			addAction1 (new Fugir());
-		else if (numAcao < 30) //16% de chance de usar poção
+		else if (numAcao < 30) //16% de chance de usar poÃ§Ã£o
 			addAction1 (new UsarItem());
-		else if (numAcao < 50 ) //10% de chance de trocar Pokémon
+		else if (numAcao < 50 ) //10% de chance de trocar PokÃ©mon
 			addAction1 (new TrocarPokemon());
 		else {
 			addAction1 (new Atacar()); //73% de chance de atacar
@@ -139,11 +139,11 @@ private class Restart2 extends Action {
 	public void action(Player faz, Player recebe) {  
 		//Random DecideAcao = new Random();
 		double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();//DecideAcao.nextInt(100) + 1;
-		if (numAcao < 3) 
+		if (numAcao < 2) 
 			addAction2 (new Fugir());
-		else if (numAcao < 30) //19% de chance de usar poção
+		else if (numAcao < 30) //19% de chance de usar poÃ§Ã£o
 			addAction2 (new UsarItem());
-		else if (numAcao < 50) //10% de chance de trocar Pokémon
+		else if (numAcao < 50) //10% de chance de trocar PokÃ©mon
 			addAction2 (new TrocarPokemon());
 		else {
 			addAction2 (new Atacar()); //69% de chance de atacar
@@ -181,13 +181,17 @@ private class Restart2 extends Action {
 	
 	public void batalha(Player P1, Player P2) { 
 		int turno = 0;
-		System.out.println("A new battle starts!");
-		System.out.println(P1.GetPlayerName() +" Sends out " +P1.RetornarPokemonAtivo().GetPokeName() + "!");
-		System.out.println(P2.GetPlayerName() +" Sends out " +P2.RetornarPokemonAtivo().GetPokeName() + "!");
+		System.out.println("\nA new battle starts!");
+		System.out.println(P1.GetPlayerName() +" sends out " +P1.RetornarPokemonAtivo().GetPokeName() + "!");
+		System.out.println(P2.GetPlayerName() +" sends out " +P2.RetornarPokemonAtivo().GetPokeName() + "!");
 		while(!fimDeBatalha(P1, P2) && !fimDeBatalha(P2, P1))
 		{
 			turno++;
-			if(turno%2 == 0) System.out.println("________TURN " +turno/2 + "_______");
+			if(turno%2 == 0){
+				System.out.println(P1.GetPlayerName() + "'s " +P1.RetornarPokemonAtivo().GetPokeName() + " HP: " + P1.RetornarPokemonAtivo().RetornaVida() + "/" + P1.RetornarPokemonAtivo().RetornaVidaMaxima());
+				System.out.println(P2.GetPlayerName() + "'s " +P2.RetornarPokemonAtivo().GetPokeName() + " HP: " + P2.RetornarPokemonAtivo().RetornaVida() + "/" + P2.RetornarPokemonAtivo().RetornaVidaMaxima() +"\n");
+				System.out.println("________TURN " +turno/2 + "_______");
+			}
 			Action acao1 = es1.getNext();
 			Action acao2 = es2.getNext();
 			
@@ -231,8 +235,8 @@ private class Restart2 extends Action {
 	}  
 
 	public static void main(String[] args) {
-		Player P1 = new Player("Emoji Ludescher", new int[]{6, 7, 9});
-		Player P2 = new Player("Lucas Paiva",  new int[]{0, 1, 2});
+		Player P1 = new Player("Emoji Ludescher", 6, new int[]{12, 12, 12, 12, 12, 12});
+		Player P2 = new Player("Lucas Paiva", 6, new int[]{1, 2, 3, 4, 5, 6});
 		BattleControls b = new BattleControls();
 		//b.addAction(b.new Restart1());
 		//b.run(P1, P2, );
@@ -240,10 +244,3 @@ private class Restart2 extends Action {
 	}
 } 
 
-
-/*						TO DO: 
-//	Linha 39 	Trocar pokemon se faint
-//	(solved)	Lista de acoes (random)
-//	(unsolved)  Lista de acoes (definidas)	
-//	(solved)	Bug em es1 - loop infinito, funcao se referencia infinitamente --- WHY?
-*/
