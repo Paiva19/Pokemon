@@ -1,6 +1,5 @@
-package ex02;
+package Pokemon;
 
-import ex01.Player;
 
 // This is just a way to hold MapEvent objects.
 class MapEventSet {
@@ -45,9 +44,9 @@ public class MapController {
 		es2.add(a);
 	}
 	
-	public void run(Player p, MapAction e) {
+	public void run(Player p, MapAction e, Mapa m) {
 		if (e != null) {
-			e.mapaction(p);
+			e.mapaction(p, m);
 		}
 	}
 	
