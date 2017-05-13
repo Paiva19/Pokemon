@@ -85,7 +85,7 @@ private class TrocarPokemon extends Action {
 			System.out.println(faz.GetPlayerName() +" took " +faz.RetornarPokemonGuardado(pokeAntigo).GetPokeName() + " out of battle and sent out " +faz.RetornarPokemonAtivo().GetPokeName() +".");
 		}
 		else
-			System.out.println(faz.GetPlayerName() + " doesn't have any other healthy PokÃ©mon! " +faz.RetornarPokemonAtivo().GetPokeName() +" can't be switched out!");
+			System.out.println(faz.GetPlayerName() + " doesn't have any other healthy Pokémon! " +faz.RetornarPokemonAtivo().GetPokeName() +" can't be switched out!");
 	} 
 	public String description() { 
 		return "";
@@ -132,13 +132,13 @@ private class Restart1 extends Action {
 	} 
 	public void action(Player faz, Player recebe) {
 		//Random DecideAcao = new Random();
-		if (!faz.isWild()){ //Ã© treinador
+		if (!faz.isWild()){ //é treinador
 			double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
 			if (numAcao < 3 ) 
 				addAction1 (new Fugir());
-			else if (numAcao < 4) //16% de chance de usar poÃ§Ã£o
+			else if (numAcao < 4) //16% de chance de usar poção
 				addAction1 (new UsarItem());
-			else if (numAcao < 5 ) //10% de chance de trocar PokÃ©mon
+			else if (numAcao < 5 ) //10% de chance de trocar Pokémon
 				addAction1 (new TrocarPokemon());
 			else {
 				addAction1 (new Atacar()); //73% de chance de atacar
@@ -167,13 +167,13 @@ private class Restart2 extends Action {
 	} 
 	public void action(Player faz, Player recebe) {  
 		//Random DecideAcao = new Random();
-		if (!faz.isWild()){ //Ã© treinador
+		if (!faz.isWild()){ //é treinador
 			double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
 			if (numAcao < 3 ) 
 				addAction2 (new Fugir());
-			else if (numAcao < 4) //16% de chance de usar poÃ§Ã£o
+			else if (numAcao < 4) //16% de chance de usar poção
 				addAction2 (new UsarItem());
-			else if (numAcao < 5 ) //10% de chance de trocar PokÃ©mon
+			else if (numAcao < 5 ) //10% de chance de trocar Pokémon
 				addAction2 (new TrocarPokemon());
 			else {
 				addAction2 (new Atacar()); //73% de chance de atacar
@@ -207,7 +207,7 @@ private class Restart2 extends Action {
 				break;
 			}
 		}
-		
+		if(!P.isWild()) /*GAMEOVER ---- nao da pra acessar a variavel m.gameover daqui*/
 		return acabouBatalha;
 	}
 
@@ -283,4 +283,3 @@ private class Restart2 extends Action {
 		b.batalha(P1, P2);
 	}
 } 
-
