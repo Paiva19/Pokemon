@@ -17,17 +17,17 @@ public class MapControls  extends MapController {
 			super(); 
 		}
 	
-		private boolean CalculaBatalha (int tipodechao)
+		private boolean CalculaBatalhaSelvagem (int tipodechao)
 		{
 			Random que = new Random();
 			int n = que.nextInt(100);
-			if((n/*tipodechao*/) > 0 /*|| (tipodechao == 0&& treinador)*/) return true;
+			if((n*tipodechao) > 0) return true;
 			return false;
 		}
 	
 		public void mapaction(Player player, Mapa map) { 
 			player.setPosicaoX(player.getPosicaoX()+1);
-			if(CalculaBatalha (map.getRelevo(player.getPosicaoX())))
+			if(CalculaBatalhaSelvagem (map.getRelevo(player.getPosicaoX())))
 			{
 				Random rdn = new Random();
 				int x = rdn.nextInt(12);
@@ -35,6 +35,7 @@ public class MapControls  extends MapController {
 				BattleControls b = new BattleControls();
 				b.batalha(s, player);
 			}
+			
 		}
 	}
 	
@@ -77,13 +78,16 @@ public class MapControls  extends MapController {
 	}
 	
 	public void simula(Player P1, Player P2, Mapa map) { 
+		int i;
 		
 		while(!gameOver)
 		{
+			for(i = 0; i < P1.RetornaTamanhoParty(); i++)	P2.RetornarPokemonGuardado(i).RecuperaVidaPokemon();
 			MapAction acao1 = es1.getNext();
 			MapAction acao2 = es2.getNext();
 			run(P1, acao1, map);
-			if(!gameOver) 
+			if(!gameOver)
+				for(i = 0; i < P1.RetornaTamanhoParty(); i++)	P1.RetornarPokemonGuardado(i).RecuperaVidaPokemon();
 					run(P2, acao2, map);
 			
 			es1.removeCurrent();
@@ -99,8 +103,8 @@ public class MapControls  extends MapController {
 		Mapa map = new Mapa(P1, P2, 10);
 		
 		map.criaMapa(P1, P2, 5);
-		MapControls b = new MapControls();
-		b.simula(P1, P2, map);
+		MapControls m = new MapControls();
+		m.simula(P1, P2, map);
 		
 
 	}

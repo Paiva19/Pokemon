@@ -106,4 +106,10 @@ public class Pokemon {
 			}
 		} 
 	
+	public void RecuperaVidaPokemon() {
+		this.currentHealth = this.maxHealth;
+	}
 }
+
+
+	
