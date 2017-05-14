@@ -44,9 +44,9 @@ public class MapController {
 		es2.add(a);
 	}
 	
-	public void run(Player p, MapAction e, Mapa m) {
+	public void run(Player p1, Player p2, MapAction e, Mapa m) {
 		if (e != null) {
-			e.mapaction(p, m);
+			e.mapaction(p1, p2, m);
 		}
 	}
 	

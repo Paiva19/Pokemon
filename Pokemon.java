@@ -70,16 +70,20 @@ public class Pokemon {
 		return indAtqAtual;
 	}
 	
+	public void ZeraIndiceAtqAtual(){
+		this.indAtqAtual = 0;
+	}
+	
 	public void GiraAtaque ()
 	{
-		indAtqAtual++;
-		if (indAtqAtual == 4)
-			indAtqAtual = 0;
+		this.indAtqAtual++;
+		if (this.indAtqAtual == 4)
+			this.indAtqAtual = 0;
 	}
 	
 	
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void TrocaPokeFainted(Player recebe) {

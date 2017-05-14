@@ -30,7 +30,6 @@ public class Player {
 			party[i] = ListaPokemon.Lista[indice].CriaNovoPoke();
 			*/
 			System.out.println("Pokemon " +(i+1) +": " +party[i].getId() + " " +party[i].GetPokeName() + " HP: " + party[i].RetornaVidaMaxima());
-		
 		}
 	}
 	
