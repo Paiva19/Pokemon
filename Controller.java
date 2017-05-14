@@ -1,5 +1,6 @@
 package Pokemon;
 
+//classe retirada do enunciado do exercicio
 // This is just a way to hold Event objects.
 class EventSet {
 	private Action[] events = new Action[100];
@@ -7,7 +8,7 @@ class EventSet {
 	private int next = 0;
 	public void add(Action e) {
 		if(index >= events.length)
-			return; // (In real life, throw exception)
+			return;
 		events[index++] = e;
 	}
 	public Action getNext() {
@@ -15,10 +16,7 @@ class EventSet {
 		int start = next;
 		 do {
 			 next = (next + 1) % events.length;
-			 //throw new NullPointerException();
-			 
 			 if(start == next) looped = true;
-			 //throw new NullPointerException();}while(true);
 			 if((next == (start + 1) % events.length) && looped)
 				 return null;
 			 } while(events[next] == null);
@@ -46,7 +44,7 @@ public class Controller {
 	public void run(Player p1, Player p2, Action e) {
 		if (e != null) {
 			e.action(p1, p2);
-			System.out.println(e.description());
+			System.out.println("");
 		}
 	}
 	

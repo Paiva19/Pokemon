@@ -1,5 +1,7 @@
 package Pokemon;
 
+//Lista com golpes utilizados pelos pokemons
+//pode ser sempre incrementada ou alterada
 public class ListaGolpes 
 {
 	public static Move ListaM[] = new Move[100];
@@ -40,85 +42,3 @@ public class ListaGolpes
 		ListaM[31] = new Move ("Hyper Beam", 150, 90, 2);
 	}
 }
-/*Pokemon List
-
-003 Venusaur
-	Grass/Poison
-		*Leech Seed
-		Razor Leaf
-		*Sleep Powder
-		Solar Beam
-		
-006 Charizard
-	Fire/Flying
-		*Leer
-		Flamethrower
-		Fire Spin
-		Slash
-	
-009 Blastoise
-	Water
-		Skull Bash
-		Hydro Pump
-		Bite
-		Withdraw
-	
-018 Pidgeot
-	Normal/Flying
-		Sand Attack
-		Wing Attack
-		Agility
-		Quick Attack
-	
-026 Raichu
-	Electric
-		Thunder
-		Thunderbolt
-		Slam
-		Agility
-	
-031 Nidoqueen
-	Ground/Poison
-		Poison Sting
-		Body Slam
-		Double Kick
-		Scratch
-		
-034 Nidoking
-	Ground/Poison
-		Horn Attack
-		Poison Sting
-		Double Kick
-		Thrash
-		
-065 Hypno
-	Psychic
-		Headbutt
-		Psychic
-		Confusion
-		Meditate
-	
-068 Machamp
-	Fighting
-		Low Kick
-		Submission
-		Seismic Toss
-	
-076 Golem
-	Rock/Ground
-		Rock Throw
-		Earthquake
-091 Lapras
-	Water/Ice
-		Body Slam
-		Ice Beam
-		Hydro Pump
-		
-	
-123 Scyther
-	Bug/Flying
-	
-149 Dragonite
-	Dragon/Flying
-	
-*/

@@ -12,6 +12,6 @@ abstract public class Action {
 	
 	
 	abstract public void action(Player A, Player B); 
-	abstract public String description(); 
+	//abstract public String description(); 
 	
 }
