@@ -6,7 +6,7 @@ abstract public class MapAction {
 	public MapAction() { 
 
 	} 
-	abstract public void mapaction(Player player, Mapa map); 
+	abstract public void mapaction(Player playerA, Player playerB, Mapa map); 
 	//abstract public String description(); 
 	
 }

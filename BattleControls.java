@@ -7,6 +7,7 @@ import java.util.Random;
 public class BattleControls  extends Controller { 
 
 	private boolean acabouBatalha = false;
+	private boolean trocou = false;
 	
 	public BattleControls(){
 		addAction1(new Restart1());
@@ -104,7 +105,6 @@ private class Fugir extends Action {
 	} 
 	public String description() { 
 		return "";
-		//return user.name " fled! Such a coward! SHAME!";
 	} 	
 } 
 
@@ -134,14 +134,21 @@ private class Restart1 extends Action {
 		//Random DecideAcao = new Random();
 		if (!faz.isWild()){ //é treinador
 			double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
-			if (numAcao < 3 ) 
+			if (numAcao < 3 )
 				addAction1 (new Fugir());
-			else if (numAcao < 4) //16% de chance de usar poção
+			else if (numAcao < 10){ //16% de chance de usar poção
 				addAction1 (new UsarItem());
-			else if (numAcao < 5 ) //10% de chance de trocar Pokémon
+				trocou = false;
+			}
+			
+			else if (numAcao < 20 && !trocou ){ //10% de chance de trocar Pokémon
 				addAction1 (new TrocarPokemon());
+			trocou = true;
+			}
+			
 			else {
 				addAction1 (new Atacar()); //73% de chance de atacar
+				trocou = false;
 			}
 			addAction1 (new Restart1()); 
 		}
@@ -171,12 +178,18 @@ private class Restart2 extends Action {
 			double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
 			if (numAcao < 3 ) 
 				addAction2 (new Fugir());
-			else if (numAcao < 4) //16% de chance de usar poção
+			else if (numAcao < 10){ //16% de chance de usar poção
 				addAction2 (new UsarItem());
-			else if (numAcao < 5 ) //10% de chance de trocar Pokémon
+				trocou = false;
+			}
+			
+			else if (numAcao < 20 && !trocou ){ //10% de chance de trocar Pokémon
 				addAction2 (new TrocarPokemon());
+				trocou = true;
+			}
 			else {
-				addAction2 (new Atacar()); //73% de chance de atacar
+				addAction2 (new Atacar());//73% de chance de atacar
+				trocou = false;
 			}
 			addAction2 (new Restart2()); 
 		}
@@ -204,10 +217,12 @@ private class Restart2 extends Action {
 			{
 				System.out.println(Vence.GetPlayerName() +" has won the battle!");
 				acabouBatalha = true;
+				
 				break;
 			}
 		}
-		if(!P.isWild()) /*GAMEOVER ---- nao da pra acessar a variavel m.gameover daqui*/
+		//if(!P.isWild())	
+			//this.gameOver = true;
 		return acabouBatalha;
 	}
 
@@ -275,11 +290,12 @@ private class Restart2 extends Action {
 	}  
 
 	public static void main(String[] args) {
-		Player P1 = new Player("Emoji Ludescher", 6, new int[]{12, 12, 12, 12, 12, 12}, false);
-		Player P2 = new Player("Lucas Paiva", 6, new int[]{1, 2, 3, 4, 5, 6}, false);
+		Player P1 = new Player("Jota Pê", 6, new int[]{1, 7, 10, 6, 2, 11}, false);
+		Player P2 = new Player("Lucas Paiva", 6, new int[]{4, 1, 8, 10, 9, 7}, false);
 		BattleControls b = new BattleControls();
 		//b.addAction(b.new Restart1());
 		//b.run(P1, P2, );
 		b.batalha(P1, P2);
+		System.out.println("=====BATTLE OVER=====");
 	}
 } 
