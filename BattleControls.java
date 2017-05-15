@@ -98,6 +98,29 @@ public class BattleControls  extends Controller {
 			acabouBatalha = true;
 		} 
 	} 
+	
+	private class ThrowPokeball extends Action {
+		public ThrowPokeball () {
+			super(-1);//ocorre antes de tentativa de fuga
+		}
+		public void action (Player faz, Player recebe){
+			System.out.println(faz.GetPlayerName() + " threw a Poké Ball!");
+			Random rdm = new Random ();
+			//formula adaptada de Bulbapedia
+			//% de captura = nBolasAtiradas*VidaMax/VidaAtual*12
+			recebe.RetornarPokemonAtivo().setnBallsThrown(recebe.RetornarPokemonAtivo().getnBallsThrown() + 1);
+			if (100*recebe.RetornarPokemonAtivo().getnBallsThrown()*recebe.RetornarPokemonAtivo().RetornaVidaMaxima()/(recebe.RetornarPokemonAtivo().RetornaVida()*12) >= rdm.nextInt(100))
+			{
+				faz.setBillsPC(recebe.RetornarPokemonAtivo()); //transfere pokemon para Bills PC 
+				faz.setnCapturados(faz.getnCapturados()+ 1);
+				System.out.println(faz.GetPlayerName() + " captured " + recebe.RetornarPokemonAtivo().GetPokeName() +"!");
+				System.out.println(recebe.RetornarPokemonAtivo().GetPokeName() + " was moved to Bill's PC.");
+				acabouBatalha = true;
+			}
+			else
+				System.out.println("But " + recebe.RetornarPokemonAtivo().GetPokeName() + " escapes the Poké Ball!");
+		}
+	}
 
 	//Decide proxima ação do Player 1 na batalha
 	private class Restart1 extends Action { 
@@ -107,8 +130,15 @@ public class BattleControls  extends Controller {
 		public void action(Player faz, Player recebe) {
 			if (!faz.isWild()){
 				//decide acao de acordo com vida do pokemon ativo
-				double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
-				if (numAcao < 2)
+				double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();
+				//Condicoes para tentativa de captura:
+				//Pokemon selvagem
+				//Pokemon selvagem com vida igual ou abaixo de 40% da vida max
+				//Só 3 poke bolas serão atiradas, após isso, o treinador desiste e volta a atacar
+				//Máximo de 5 pokemons capturados por treinador
+ 				if (recebe.isWild() && 100*(double)recebe.RetornarPokemonAtivo().RetornaVida()/recebe.RetornarPokemonAtivo().RetornaVidaMaxima() <= 40 && recebe.RetornarPokemonAtivo().getnBallsThrown() < 3 && faz.getnCapturados() < 5)
+					addAction1 (new ThrowPokeball());
+ 				else if (numAcao < 2)
 					addAction1 (new Fugir());
 				else if (numAcao < 10){ 
 					addAction1 (new UsarItem());
@@ -143,10 +173,12 @@ public class BattleControls  extends Controller {
 			super(100); 
 		} 
 		public void action(Player faz, Player recebe) {  
-			//Random DecideAcao = new Random();
+			//Random x = new Random();
 			if (!faz.isWild()){
-				double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();			//DecideAcao.nextInt(100) + 1;
-				if (numAcao < 2) 
+				double numAcao = 100 * (double) faz.RetornarPokemonAtivo().RetornaVida()/faz.RetornarPokemonAtivo().RetornaVidaMaxima();
+				if (recebe.isWild() && 100*(double)recebe.RetornarPokemonAtivo().RetornaVida()/recebe.RetornarPokemonAtivo().RetornaVidaMaxima() <= 40 && recebe.RetornarPokemonAtivo().getnBallsThrown() < 3 && faz.getnCapturados() < 5)
+					addAction2 (new ThrowPokeball());
+				else if (numAcao < 2) 
 					addAction2 (new Fugir());
 				else if (numAcao < 10){
 					addAction2 (new UsarItem());
@@ -272,8 +304,8 @@ public class BattleControls  extends Controller {
 	//main utilizada para batalha exclusivamente entre treinadores
 	//cria jogadores e batalha
 	public static void main(String[] args) {
-		Player P1 = new Player("Jota Pê", 6, new int[]{1, 7, 10, 6, 2, 11}, false);
-		Player P2 = new Player("Paiva", 6, new int[]{4, 1, 8, 10, 9, 7}, false);
+		Player P1 = new Player("Emozão", 6, new int[]{1, 7, 10, 6, 2, 11}, false);
+		Player P2 = new Player("Paivoso", 6, new int[]{4, 1, 8, 10, 9, 7}, false);
 		BattleControls b = new BattleControls();
 		b.batalha(P1, P2);
 		System.out.println("\n=====GAME OVER=====");

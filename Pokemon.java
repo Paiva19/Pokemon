@@ -9,6 +9,7 @@ public class Pokemon {
 	private int atkPower; //poder de ataque
 	private int defPower; //poder de defesa
 	private int indAtqAtual = 0; //indica qual ataque sera usado por este pokemon na proxima vez de acordo com vetor attack[]
+	private int nBallsThrown = 0;
 
 	public Pokemon(String nome, int ident, Move golpe[], int vidaMax, int atkpower, int defpower){
 		this.name = nome;
@@ -116,5 +117,13 @@ public class Pokemon {
 	
 	public int getId() {
 		return this.id;
+	}
+
+	public int getnBallsThrown() {
+		return nBallsThrown;
+	}
+
+	public void setnBallsThrown(int nBallsThrown) {
+		this.nBallsThrown = nBallsThrown;
 	}
 }

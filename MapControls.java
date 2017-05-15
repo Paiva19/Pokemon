@@ -122,8 +122,9 @@ public class MapControls  extends MapController {
 	//main para ser chamada para jogo completo, com batalhas wild x player e player x player
 	//cria jogadores e mapa a ser utilizado
 	public static void main(String[] args) {
+		int i = 0;
 		Player P1 = new Player("Emoji", 6, new int[]{0, 8, 9, 10, 11, 4}, false);
-		Player P2 = new Player("Lucas Paiva", 6,  new int[]{1, 2, 3, 4, 5, 6}, false);
+		Player P2 = new Player("Paiva", 6,  new int[]{7, 2, 3, 4, 5, 6}, false);
 		Mapa map = new Mapa(P1, P2, 10);
 		//chama impressao do mapa na sua condicao inicial
 		map.imprimeMapa(P1);
@@ -131,5 +132,22 @@ public class MapControls  extends MapController {
 		MapControls m = new MapControls();
 		m.simula(P1, P2, map);
 		System.out.println("\n==========GAME OVER==========");
+		System.out.println("\nSummary:");
+		System.out.print(P1.GetPlayerName() + " captured " +P1.getnCapturados()+ " Pokémon:");
+		if (P1.getnCapturados() == 0)
+			System.out.println(" such a loser!\n");
+		else {
+			System.out.println("");
+			for (i = 0; i < P1.getnCapturados(); i++)
+				System.out.println(P1.getBillsPC(i).GetPokeName());
+		}
+		System.out.print("\n" + P2.GetPlayerName() + " captured " +P2.getnCapturados()+ " Pokémon:");
+		if (P2.getnCapturados() == 0)
+			System.out.println(" such a loser!\n");
+		else {
+			System.out.println("");
+			for (i = 0; i < P2.getnCapturados(); i++)
+				System.out.println(P2.getBillsPC(i).GetPokeName());
+		}
 	}
 }

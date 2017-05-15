@@ -5,10 +5,12 @@ package Pokemon;
 public class Player {
 	private String ID; //nome do jogador
 	private int npokemon; //tamanho da sua party
-	private Pokemon party[] = new Pokemon[6]; //vetor que contem os pokemon party
+	private Pokemon party[] = new Pokemon[6]; //vetor que contem os pokemon da party 
+	private Pokemon billsPC[] = new Pokemon [5]; //vetor que onde são colocados pokemons capturados
 	private int pokeAtivo = 0; //indica qual pokemon esta em batalha de acordo com vetor party[]
 	private boolean wild; //indica se é um treinador ou um pokemon selvagem
 	private int posicaoX; //indica posicao do jogador no mapa
+	private int nCapturados; //indica quantos pokemons o player ja capturou (o maximo é 5)
 
 	public Player(String ident, int numOfPoke, int pokeIndex[], boolean selvagem){
 		this.ID = ident;
@@ -18,6 +20,7 @@ public class Player {
 		int i;
 		ListaPokemon Lista = new ListaPokemon();
 		this.npokemon = numOfPoke; 
+		this.nCapturados = 0;
 		//atribui pokemons escolhidos ao player e imprime a party ao começar o jogo
 		for (i = 0; i < numOfPoke; i++)
 		{
@@ -69,6 +72,24 @@ public class Player {
 	public Pokemon RetornarPokemonGuardado (int n) {
 		return this.party[n];
 	}
+
+	public Pokemon getBillsPC(int i) {
+		return billsPC[i];
+	}
+
+	public void setBillsPC(Pokemon novo) {
+		this.billsPC[nCapturados] = novo;
+	}
+
+	public int getnCapturados() {
+		return nCapturados;
+	}
+
+	public void setnCapturados(int nCapturados) {
+		this.nCapturados = nCapturados;
+	}
+	
+	
 	
 	
 }
