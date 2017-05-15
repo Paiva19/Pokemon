@@ -6,6 +6,8 @@ Exercício: Pokémon - Lista 06
 O programa tem duas "main", uma para cada parte do exercício, de acordo com o enunciado.
 A parte 1 pode ser rodada a partir da classe BattleControls, enquanto a parte 2 pode ser rodada a partir de MapControls.
 
+O último update do projeto tem o sistema de Poké Bolas e capturas para ponto extra.
+
 Alunos:
 Guilherme Rodrigues Ludescher 9833180
 Lucas Gomes de Paiva 9868384
